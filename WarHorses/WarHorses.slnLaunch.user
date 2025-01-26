@@ -1,0 +1,27 @@
+[
+  {
+    "Name": "Novo Perfil",
+    "Projects": [
+      {
+        "Path": "05.Api\\05.Api.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "01.Core\\01.Core.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "02.Data\\02.Data.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "03.Infrastructure\\03.Infrastructure.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "04.Service\\04.Service.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

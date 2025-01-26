@@ -1,0 +1,76 @@
+# Compilados do Visual Studio
+bin/
+obj/
+
+# Build do .NET
+*.dll
+*.exe
+*.app
+*.so
+*.dylib
+*.pdb
+*.cache
+*.log
+*.csproj.user
+*.csproj.nuget.g.targets
+*.csproj.nuget.g.props
+*.msbuild.vs.json
+
+# Pacotes
+packages/
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+
+# Configuração do Visual Studio
+.vs/
+.vscode/
+.vscode/*
+
+# Diretórios temporários
+[Tt]emp/
+build/
+dist/
+
+# Logs
+*.log
+*.tlog
+
+# Configuração local do sistema operacional
+*.DS_Store
+Thumbs.db
+desktop.ini
+
+# Arquivos de backup
+*.bak
+*.swp
+
+# Chaves e credenciais
+*.key
+*.pem
+*.pfx
+
+# User secrets
+secrets.json
+
+# Arquivos Docker (opcional)
+docker-compose.override.yml
+
+# Arquivos do JetBrains Rider
+.idea/
+.idea/*
+
+# Arquivos gerados pelo NuGet
+*.nuspec
+.nuget/
+
+# Arquivos gerados pelo dotnet user-secrets
+**/.vs/slnx.sqlite
+*.db
+
+# Migrations geradas
+**/Migrations/
+
+# Outros arquivos locais
+*.userprefs
