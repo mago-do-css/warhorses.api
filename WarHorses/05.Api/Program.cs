@@ -44,7 +44,7 @@ else
     Console.WriteLine("Ambiente de Produção: Logs simplificados.");
 }
 
-// Configura��o do Swagger
+// Configuração do Swagger
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {

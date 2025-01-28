@@ -5,5 +5,6 @@ namespace _01.Core.Entities{
         public string Email { get; set; }  = default!; 
         public string Password { get; set; } = default!; 
         public string Verified { get; set; } = default!; 
+        public string LastLogin { get; set; } = default!; 
     }
 }
