@@ -3,8 +3,14 @@ using FirebaseAdmin;
 using FirebaseAdmin.Messaging;
 using Google.Apis.Auth.OAuth2;
 using Google.Cloud.Firestore;
+using AutoMapper;
+using _04.Service.Interfaces;
+using _04.Service.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//TODO: incluir o firebase config
+//builder.Services.Configure<FirebaseConfig>(builder.Configuration.GetSection("FirebaseConfig"));
 
 // Obtenha o caminho absoluto do diretório atual do projeto
 string basePath = AppDomain.CurrentDomain.BaseDirectory;
@@ -22,7 +28,9 @@ builder.Services.AddSingleton<FirestoreDb>(provider =>
   });
 
 builder.Services.AddScoped<ITesteRepoRepository, TesteRepo>();
+builder.Services.AddScoped<ITournamentService, TournamentService>();
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors();
