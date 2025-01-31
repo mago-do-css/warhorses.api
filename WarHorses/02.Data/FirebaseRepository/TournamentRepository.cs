@@ -2,24 +2,23 @@ using _01.Core.Entities;
 using Firebase.Database;
 using Firebase.Database.Query;
 using System.Text.Json;
-
-
+ 
 namespace _02.Data.FirebaseRepository{
-  public class TournamentRepository : ITournamentRepository 
-{
-    private readonly FirebaseClient _firebaseClient;
-    private readonly string _childName;
-
-    public TournamentRepository(string databaseUrl, string childName, string apiKey)
+  public class TournamentRepository
     {
-        _firebaseClient = new FirebaseClient(databaseUrl, 
-            new FirebaseOptions { AuthTokenAsyncFactory = () => Task.FromResult(apiKey) });
-        _childName = childName;
+    private readonly FirebaseClient _firebaseClient;
+
+    public TournamentRepository(FirebaseContext firebaseContext)
+    {
+        _firebaseClient = firebaseContext.GetClient(); 
     }
 
-    public Task AddTournament(Tournament tournament){
-        return _firebaseClient.Child(_childName).PostAsync(JsonSerializer.Serialize(tournament));
-    } 
-}
-  
+    public async Task<Tournament> AddTournament(Tournament tournament){
+        var childName = GetChildName(tournament);
+        var teste = await _firebaseClient.Child(childName).PostAsync(JsonSerializer.Serialize(tournament));
+
+        return JsonSerializer.Deserialize<Tournament>(teste.Object) ?? new Tournament();
+    }  
+    private string GetChildName<T>(T entity){return typeof(T).Name;}
+    }
 }
