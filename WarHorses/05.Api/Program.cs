@@ -6,6 +6,7 @@ using Google.Cloud.Firestore;
 using AutoMapper;
 using _04.Service.Interfaces;
 using _04.Service.Services;
+using _05.Api.Automapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,7 +31,7 @@ builder.Services.AddSingleton<FirestoreDb>(provider =>
 builder.Services.AddScoped<ITesteRepoRepository, TesteRepo>();
 builder.Services.AddScoped<ITournamentService, TournamentService>();
 
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddAutoMapper();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors();

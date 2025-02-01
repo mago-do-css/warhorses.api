@@ -2,30 +2,29 @@ using _04.Services.Dto;
 using _04.Service.Interfaces;
 using _02.Data.FirebaseRepository;
 using _01.Core.Entities;
+using AutoMapper;
 
 
 namespace _04.Service.Services
 {
     public class TournamentService : ITournamentService
     {
-       private readonly ITournamentRepository _repository;
-        public TournamentService(ITournamentRepository repository)
+       private readonly ITournamentRepository _repository; 
+       private readonly IMapper _mapper; 
+
+        public TournamentService(ITournamentRepository repository, IMapper mapper)
         {
-            _repository = repository;
-        }
+            _repository = repository; 
+            _mapper = mapper;
+        } 
 
-        public Task<TournamentDto> CreateTournament(TournamentDto data){
+        public async Task<TournamentDto> CreateTournament(TournamentDto data){
 
-           data.Id = Guid.NewGuid().ToString();
+            var tournament = _mapper.Map<Tournament>(data);
 
+            var result = await _repository.AddTournament(tournament);
 
- 
-           return  Task.FromResult(new TournamentDto(){
-                    Id = data.Id,
-                    Description = data.Description,
-                    Date = data.Date
-                });
-        }
-
+            return _mapper.Map<TournamentDto>(result);
+        } 
     }
 }

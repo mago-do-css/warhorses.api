@@ -8,6 +8,7 @@ namespace _05.Api.Automapper
         public TournamentMapping()
         {
             CreateMap<Tournament, TournamentDto>();
+            CreateMap<TournamentDto, Tournament>();
         }
     }
 }
