@@ -1,19 +1,13 @@
 using _02.Data.FirebaseRepository;
-using FirebaseAdmin;
-using FirebaseAdmin.Messaging;
+using FirebaseAdmin; 
 using Google.Apis.Auth.OAuth2;
-using Google.Cloud.Firestore;
-using AutoMapper;
+using Google.Cloud.Firestore; 
 using _04.Service.Interfaces;
 using _04.Service.Services;
 using _05.Api.Automapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//TODO: incluir o firebase config
-//builder.Services.Configure<FirebaseConfig>(builder.Configuration.GetSection("FirebaseConfig"));
-
-// Obtenha o caminho absoluto do diretório atual do projeto
 string basePath = AppDomain.CurrentDomain.BaseDirectory;
 string configPath = Path.Combine(basePath, "Configs", "warhorses-teste-863edc237bc5.json");
 
@@ -28,8 +22,8 @@ builder.Services.AddSingleton<FirestoreDb>(provider =>
       return FirestoreDb.Create("warhorses-teste");
   });
 
-builder.Services.AddScoped<ITesteRepoRepository, TesteRepo>();
 builder.Services.AddScoped<ITournamentService, TournamentService>();
+builder.Services.AddScoped<ITournamentRepository, TournamentRepository>();
 
 builder.Services.AddAutoMapper();
 builder.Services.AddEndpointsApiExplorer();

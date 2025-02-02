@@ -19,7 +19,7 @@ namespace _05.Api.Controllers
  
         [HttpPost("addTournament")]
         public async Task<TournamentDto> CreateTournament([FromBody] TournamentDto request)
-        {
+        { 
            return await _service.CreateTournament(request);
         }
 

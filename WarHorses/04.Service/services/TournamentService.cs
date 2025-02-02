@@ -4,7 +4,6 @@ using _02.Data.FirebaseRepository;
 using _01.Core.Entities;
 using AutoMapper;
 
-
 namespace _04.Service.Services
 {
     public class TournamentService : ITournamentService
