@@ -8,7 +8,6 @@ namespace _01.Core.Entities
         public string Name { get; set; } = default!; 
         public string? Description { get; set; }
         public string? LogoPath { get; set; }
-        public Guid? DuelId { get; set; }  
         public string? Color { get; set; }
         public List<Guid>? Knights { get; set; } = new List<Guid>();
     }

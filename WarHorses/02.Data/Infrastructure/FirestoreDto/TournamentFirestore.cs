@@ -3,7 +3,7 @@ using Google.Cloud.Firestore;
 namespace _02.Data.Infrastructure.FirebaseDto
 {
     [FirestoreData]
-    public class FBTournamentDto
+    public class TournamentFirestore
     {
         [FirestoreProperty]
         public string Id { get; set; }

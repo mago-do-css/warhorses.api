@@ -1,0 +1,19 @@
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql-warhorses
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: diamond404
+      MYSQL_DATABASE: warhorses
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: diamond404
+    networks:
+      - app-warhorses   
+    ports:
+      - "3306:3306"
+    command: --bind-address=0.0.0.0
+
+networks:
+  app-warhorses:
+    external: true   

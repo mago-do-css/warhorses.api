@@ -5,9 +5,9 @@ using _02.Data.Infrastructure.FirebaseDto;
 
 public static class TournamentMapper
 {
-    public static FBTournamentDto ToFirebaseDTO(this Tournament tournament)
+    public static TournamentFirestore ToFirebaseDTO(this Tournament tournament)
     {
-        return new FBTournamentDto
+        return new TournamentFirestore
         {
             Id = tournament.Id.ToString(),
             Description = tournament.Description,
@@ -16,7 +16,7 @@ public static class TournamentMapper
         };
     }
 
-    public static Tournament ToEntity(this FBTournamentDto dto)
+    public static Tournament ToEntity(this TournamentFirestore dto)
     {
         return new Tournament
         {

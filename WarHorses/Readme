@@ -1,0 +1,15 @@
+# Migrations
+
+
+### Para executar as migrations
+
+--- dotnet ef migrations add WARHOSES-5 --project ./ --startup-project ../05.Api/ 
+
+### Para atualizar o banco com migrations já criadas
+
+--- dotnet ef database update --project ./ --startup-project ../05.Api/
+
+## Removendo
+
+--- dotnet ef migrations remove --project ./ --startup-project ../05.Api/
+

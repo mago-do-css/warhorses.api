@@ -5,8 +5,27 @@ using Google.Cloud.Firestore;
 using _04.Service.Interfaces;
 using _04.Service.Services;
 using _05.Api.Automapper;
+using Microsoft.EntityFrameworkCore; 
+using Microsoft.Extensions.DependencyInjection;
+
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Obtém a string de conexão do appsettings.json
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
+?? throw new InvalidOperationException("A string de conexão 'DefaultConnection' não foi encontrada.");
+
+// Adiciona o DbContext ao container de serviços
+//builder.Services.AddDbContext<WarhosesDbContext>(options => options.UseMySQL(connectionString));
+
+
+builder.Services.AddDbContext<WarhosesDbContext>(options =>
+    options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection"))
+);
+
+ 
+ 
+
 
 string basePath = AppDomain.CurrentDomain.BaseDirectory;
 string configPath = Path.Combine(basePath, "Configs", "warhorses-teste-863edc237bc5.json");
@@ -33,7 +52,7 @@ builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 builder.Services.AddControllers();
 
-var app = builder.Build();
+var app = builder.Build(); 
 
 // Configure o pipeline de middleware
 if (app.Environment.IsDevelopment())
