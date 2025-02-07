@@ -6,26 +6,19 @@ using _04.Service.Interfaces;
 using _04.Service.Services;
 using _05.Api.Automapper;
 using Microsoft.EntityFrameworkCore; 
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection; 
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Obtém a string de conexão do appsettings.json
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
-?? throw new InvalidOperationException("A string de conexão 'DefaultConnection' não foi encontrada.");
-
-// Adiciona o DbContext ao container de serviços
-//builder.Services.AddDbContext<WarhosesDbContext>(options => options.UseMySQL(connectionString));
-
 
 builder.Services.AddDbContext<WarhosesDbContext>(options =>
-    options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection"))
-);
-
- 
- 
-
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("DefaultConnection"), 
+        new MySqlServerVersion(new Version(8, 0, 21))
+    )
+); 
 
 string basePath = AppDomain.CurrentDomain.BaseDirectory;
 string configPath = Path.Combine(basePath, "Configs", "warhorses-teste-863edc237bc5.json");
