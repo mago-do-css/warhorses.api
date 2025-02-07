@@ -16,11 +16,23 @@ namespace _05.Api.Controllers
         {
             _service = service;
         }
- 
-        [HttpPost("addTournament")]
+
+        [HttpPost("create-tournament")]
         public async Task<TournamentDto> CreateTournament([FromBody] TournamentDto request)
         { 
            return await _service.CreateTournament(request);
+        }
+
+        [HttpPost("update-tournament")]
+        public async Task<TournamentDto> UpdateTournament([FromRoute] int tournamentId)
+        { 
+           return await _service.UpdateTournament(tournamentId);
+        }
+
+        [HttpPost("remove-tournament")]
+        public async Task<TournamentDto> RemoveTournament([FromRoute] int tournamentId)
+        { 
+           return await _service.RemoveTournament(tournamentId);
         }
 
         // [HttpGet("get/tournament/{id}")]

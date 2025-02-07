@@ -25,5 +25,15 @@ namespace _04.Service.Services
 
             return _mapper.Map<TournamentDto>(result);
         } 
+
+         public async Task<TournamentDto> UpdateTournament(TournamentDto data){
+
+            var entity = _repository.GetTounamentById(data.Id);
+            var tournament = _mapper.Map<Tournament>(data);
+
+            var result = await _repository.AddTournament(tournament);
+
+            return _mapper.Map<TournamentDto>(result);
+        } 
     }
 }
