@@ -1,8 +1,9 @@
 using _04.Services.Dto;
 using _04.Service.Interfaces;
-using _02.Data.FirebaseRepository;
+using _02.Data.Interfaces;
 using _01.Core.Entities;
 using AutoMapper;
+using System.CodeDom;
 
 namespace _04.Service.Services
 {
@@ -17,23 +18,32 @@ namespace _04.Service.Services
             _mapper = mapper;
         } 
 
-        public async Task<TournamentDto> CreateTournament(TournamentDto data){
+        public async Task<TournamentDto> CreateTournament(TournamentDto tournamentDto){
 
-            var tournament = _mapper.Map<Tournament>(data);
+            var entity = _mapper.Map<Tournament>(tournamentDto);
 
-            var result = await _repository.AddTournament(tournament);
+            var result = await _repository.Create(entity);
+
+            return _mapper.Map<TournamentDto>(result);
+        } 
+
+
+         public async Task<TournamentDto> UpdateTournament(TournamentDto tournamentDto){
+
+            var entity = _mapper.Map<Tournament>(tournamentDto);
+            if(entity == null) throw new Exception("Torneio não encontrado!");
+
+            var result = await _repository.Update(entity);
 
             return _mapper.Map<TournamentDto>(result);
         } 
 
-         public async Task<TournamentDto> UpdateTournament(TournamentDto data){
-
-            var entity = _repository.GetTounamentById(data.Id);
-            var tournament = _mapper.Map<Tournament>(data);
-
-            var result = await _repository.AddTournament(tournament);
-
-            return _mapper.Map<TournamentDto>(result);
-        } 
+        public async Task RemoveTournament(Guid id){
+            await _repository.Remove(id);
+        }
+        
+        public async Task<ICollection<Tournament>> GetAll(){
+            return await _repository.GetAll();
+        }
     }
 }
