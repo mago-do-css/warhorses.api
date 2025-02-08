@@ -2,8 +2,8 @@ using _04.Services.Dto;
 
 namespace _04.Service.Interfaces
 {
-    public interface ITournamentService
+    public interface ITournamentService : IService<TournamentDto>
     {
-        Task<TournamentDto> CreateTournament(TournamentDto data); 
+      
     }
 } 

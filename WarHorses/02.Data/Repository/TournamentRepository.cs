@@ -35,14 +35,19 @@ namespace _02.Data.Repository
 
         public async Task Remove(Guid id)
         {
-            var entity = await _context.Tournaments.FirstOrDefaultAsync(t => t.Id == id);
+            try{
+                var entity = await _context.Tournaments.FirstOrDefaultAsync(t => t.Id == id);
 
-            if(entity == null) throw new Exception("Torneio nao encontrado!");
+                if(entity == null) throw new Exception("Torneio nao encontrado!");
 
-            entity.Active = false;
+                entity.Active = false;
 
-            _context.Tournaments.Update(entity);
-            await _context.SaveChangesAsync();
+                _context.Tournaments.Update(entity);
+                await _context.SaveChangesAsync();
+            }catch(Exception e){
+                throw new Exception("Erro ao remover torneio.", e);
+            }
+           
         }
 
         public async Task<Tournament> Update(Tournament entity)

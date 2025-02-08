@@ -1,5 +1,4 @@
 
-using _02.Data.FirebaseRepository;
 using _04.Service.Interfaces;
 using _04.Services.Dto;
 using Microsoft.AspNetCore.Mvc; 
@@ -20,26 +19,25 @@ namespace _05.Api.Controllers
         [HttpPost("create-tournament")]
         public async Task<TournamentDto> CreateTournament([FromBody] TournamentDto request)
         { 
-           return await _service.CreateTournament(request);
+           return await _service.Create(request);
         }
 
         [HttpPost("update-tournament")]
-        public async Task<TournamentDto> UpdateTournament([FromRoute] int tournamentId)
+        public async Task<TournamentDto> UpdateTournament([FromBody] TournamentDto request )
         { 
-           return await _service.UpdateTournament(tournamentId);
+           return await _service.Update(request);
         }
 
         [HttpPost("remove-tournament")]
-        public async Task<TournamentDto> RemoveTournament([FromRoute] int tournamentId)
+        public Task RemoveTournament([FromRoute] Guid tournamentId)
         { 
-           return await _service.RemoveTournament(tournamentId);
+           return _service.Remove(tournamentId);
         }
 
-        // [HttpGet("get/tournament/{id}")]
-        // public async Task<IActionResult> GetDocument(string id)
-        // {
-        //      var document = await _firebaseRepository.GetDocumentAsync("Teste", id);
-        //     return document != null ? Ok(document) : NotFound(new { message = "Documento não encontrado!" });
-        // }
+        [HttpGet("get-tournament/{id}")]
+        public async Task<TournamentDto> GetTournament(Guid id)
+        {
+            return await _service.GetById(id); 
+        }
     }
 }
