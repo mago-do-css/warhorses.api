@@ -1,13 +1,9 @@
-using Google.Cloud.Firestore;
 using _01.Core.Entities;
 
-namespace _02.Data.FirebaseRepository
+namespace _02.Data.Interfaces
 {
-    public interface ITournamentRepository
-    {
-        Task<Tournament> AddTournament(Tournament tournament);
-        //Task<DocumentSnapshot> GetTournament(string collectionName, string documentId);
-       // Task DeleteTournament(string collectionName, string documentId);
+    public interface ITournamentRepository : IRepository<Tournament>
+    { 
     
     }
-}
+} 
