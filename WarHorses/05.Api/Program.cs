@@ -1,12 +1,12 @@
-using _02.Data.FirebaseRepository;
+using _02.Data.Repositories;
+using _02.Data.Interfaces;
 using FirebaseAdmin; 
 using Google.Apis.Auth.OAuth2;
 using Google.Cloud.Firestore; 
 using _04.Service.Interfaces;
 using _04.Service.Services;
 using _05.Api.Automapper;
-using Microsoft.EntityFrameworkCore; 
-using Microsoft.Extensions.DependencyInjection; 
+using Microsoft.EntityFrameworkCore;  
 
 
 var builder = WebApplication.CreateBuilder(args);

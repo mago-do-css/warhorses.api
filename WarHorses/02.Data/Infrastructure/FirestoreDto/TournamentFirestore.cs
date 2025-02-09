@@ -6,7 +6,7 @@ namespace _02.Data.Infrastructure.FirebaseDto
     public class TournamentFirestore
     {
         [FirestoreProperty]
-        public string Id { get; set; }
+        public string Id { get; set; } = default!;
         
         [FirestoreProperty]
         public string? Description { get; set; }
