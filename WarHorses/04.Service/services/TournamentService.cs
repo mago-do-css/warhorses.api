@@ -29,8 +29,10 @@ namespace _04.Service.Services
 
          public async Task<TournamentDto> Update(TournamentDto tournamentDto){
 
-            var entity = _mapper.Map<Tournament>(tournamentDto);
+            var entity = await _repository.GetById(tournamentDto.Id);
             if(entity == null) throw new Exception("Torneio não encontrado!");
+
+            _mapper.Map(tournamentDto, entity);
 
             var result = await _repository.Update(entity);
 
