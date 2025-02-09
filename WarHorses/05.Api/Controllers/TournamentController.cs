@@ -28,10 +28,10 @@ namespace _05.Api.Controllers
            return await _service.Update(request);
         }
 
-        [HttpPost("remove-tournament")]
-        public Task RemoveTournament([FromRoute] Guid tournamentId)
+        [HttpPost("remove-tournament/{id}")]
+        public Task RemoveTournament([FromRoute] Guid id)
         { 
-           return _service.Remove(tournamentId);
+           return _service.Remove(id);
         }
 
         [HttpGet("get-tournament/{id}")]

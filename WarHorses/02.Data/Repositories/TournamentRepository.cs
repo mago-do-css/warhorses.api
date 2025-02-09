@@ -35,8 +35,8 @@ namespace _02.Data.Repositories
 
         public async Task Remove(Guid id)
         {
-            try{
-                var entity = await _context.Tournaments.FirstOrDefaultAsync(t => t.Id == id);
+            try{ 
+                var entity = await _context.Tournaments.FirstOrDefaultAsync(t=>t.Id == id); 
 
                 if(entity == null) throw new Exception("Torneio nao encontrado!");
 
