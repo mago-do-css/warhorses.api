@@ -7,5 +7,6 @@ namespace _04.Services.Dto
         public string? Description { get; set; }
         public DateTime Date { get; set; } 
         public TournamentTypeEnum Type { get; set; }
+        public bool Active { get; set; }
     } 
 }
