@@ -39,5 +39,10 @@ namespace _05.Api.Controllers
         {
             return await _service.GetById(id); 
         }
+        [HttpGet("get-list-tournament")]
+        public async Task<ICollection<TournamentDto>> GetAllTournament()
+        {
+            return await _service.GetAll(); 
+        }
     }
 }
