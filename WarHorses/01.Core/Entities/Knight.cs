@@ -1,7 +1,7 @@
 namespace _01.Core.Entities{
     public class Knight{
-        public Guid Id { get; set; }
-        public Guid UserId { get; set; }
-        public int RankPosition { get; set; }  
+        public Guid Id { get; set; } = default!;
+        public Guid UserId { get; set; } = default!;
+        public int? RankPosition { get; set; }  
     }
 }

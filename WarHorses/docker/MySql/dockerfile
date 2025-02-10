@@ -1,0 +1,14 @@
+# Usar a imagem oficial do MySQL como base
+FROM mysql:8
+
+# Definir variáveis de ambiente para configuração do MySQL
+ENV MYSQL_ROOT_PASSWORD=diamond404
+ENV MYSQL_DATABASE=warhorses
+ENV MYSQL_USER=admin
+ENV MYSQL_PASSWORD=diamond404
+
+# Configurar o MySQL para aceitar conexões de qualquer IP
+CMD ["--bind-address=0.0.0.0"]
+
+# Expor a porta 3306 do MySQL
+EXPOSE 3306

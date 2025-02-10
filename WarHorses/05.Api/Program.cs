@@ -1,12 +1,25 @@
-using _02.Data.FirebaseRepository;
-using FirebaseAdmin;
-using FirebaseAdmin.Messaging;
+using _02.Data.Repositories;
+using _02.Data.Interfaces;
+using FirebaseAdmin; 
 using Google.Apis.Auth.OAuth2;
-using Google.Cloud.Firestore;
+using Google.Cloud.Firestore; 
+using _04.Service.Interfaces;
+using _04.Service.Services;
+using _05.Api.Automapper;
+using Microsoft.EntityFrameworkCore;  
+
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Obtenha o caminho absoluto do diretório atual do projeto
+// Obtém a string de conexão do appsettings.json
+
+builder.Services.AddDbContext<WarhosesDbContext>(options =>
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("DefaultConnection"), 
+        new MySqlServerVersion(new Version(8, 0, 21))
+    )
+); 
+
 string basePath = AppDomain.CurrentDomain.BaseDirectory;
 string configPath = Path.Combine(basePath, "Configs", "warhorses-teste-863edc237bc5.json");
 
@@ -21,8 +34,10 @@ builder.Services.AddSingleton<FirestoreDb>(provider =>
       return FirestoreDb.Create("warhorses-teste");
   });
 
-builder.Services.AddScoped<ITesteRepoRepository, TesteRepo>();
+builder.Services.AddScoped<ITournamentService, TournamentService>();
+builder.Services.AddScoped<ITournamentRepository, TournamentRepository>();
 
+builder.Services.AddAutoMapper();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors();
@@ -30,7 +45,7 @@ builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 builder.Services.AddControllers();
 
-var app = builder.Build();
+var app = builder.Build(); 
 
 // Configure o pipeline de middleware
 if (app.Environment.IsDevelopment())
