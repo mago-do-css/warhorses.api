@@ -1,0 +1,13 @@
+using _01.Core.Enums;
+
+namespace _04.Services.Dto{
+    public class DuelDto{
+        public Guid Id { get; set; } 
+        public Guid TournamentId { get; set; } 
+        public TournamentDto Tournament {get; set; }  = default!;
+        public Guid TeamIdOne { get; set; }
+        public Guid TeamIdTwo { get; set; } 
+        public StatusDuelEnum  Status  { get; set; } 
+        public Guid? WinnerId { get; set; }
+    }
+}
