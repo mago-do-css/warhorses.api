@@ -9,5 +9,7 @@ public class TournamentConfiguration : IEntityTypeConfiguration<Tournament>
         builder.ToTable("Tournament");
 
         builder.HasKey(t => t.Id);   
+
+        builder.HasMany(t => t.Duels).WithOne(d => d.Tournament).HasForeignKey(d => d.TournamentId);
     }
 } 

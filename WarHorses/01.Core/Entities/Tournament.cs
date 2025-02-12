@@ -8,5 +8,6 @@ namespace _01.Core.Entities
         public DateTime Date  { get; set; } = default!; 
         public TournamentTypeEnum  Type  { get; set; } = default!; 
         public bool Active  { get; set; } = default!;
+        public ICollection<Duel>? Duels { get; set; }
     }
 }
